@@ -70,13 +70,15 @@ module.exports = (code, options = defaultConfig) => {
       }
       const value = String(attribs[key]);
       let newKey = key
-        .replace(/^wx:/g, 'v-')
+        .replace(/^a:/g, 'v-')
         .replace(/^v-/g, ':')
         .replace(/^:if/g, 'v-if')
+        .replace(/^:elif/g, 'v-else-if')
         .replace(/^:for/g, 'v-for')
-        .replace(/^(bind):?/g, '@')
-        .replace(/^catch:?(.*?)$/g, '@$1.capture')
-        .replace(/tap$/g, 'click');
+        // .replace(/^(bind):?/g, '@')
+        // .replace(/^catch:?(.*?)$/g, '@$1.capture')
+        // .replace(/tap$/g, 'click')
+        .replace(/onTap$/, '@click');
 
       let isV = false;
 
