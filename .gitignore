@@ -13,3 +13,4 @@ yarn-error.log.*
 # test
 test/output/
 coverage
+test.js

@@ -1,7 +1,7 @@
 {
   "name": "wxmini-to-vue",
   "version": "1.0.0-dev",
-  "description": "微信小程序页面（组件）转vue组件",
+  "description": "微信，支付宝小程序页面（组件）转vue组件",
   "main": "src/index.js",
   "repository": "git@github.com:notbucai/wxmini-to-vue.git",
   "bugs": {

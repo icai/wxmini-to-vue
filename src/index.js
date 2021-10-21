@@ -8,16 +8,17 @@
 const fs = require('fs')
 const path = require('path')
 const beautify = require('js-beautify')
-const { readWxComponents, traverseDir, mkdirSync } = require("./utils/index");
+const { readWxComponents, readMyComponents, traverseDir, mkdirSync } = require("./utils/index");
 const defaultConfig = require('./config/default');
-const transform = require('./lib')
+const transform = require('./lib/wx')
+const transformAli = require('./lib/my')
 module.exports = class {
   /**
    *
    * @param {defaultConfig} options 配置
    */
   constructor(options = defaultConfig) {
-    this.options = options;
+    this.options = Object.assign({}, defaultConfig, options);
   }
 
   /**
@@ -26,6 +27,14 @@ module.exports = class {
    * @param {string} output 出口
    */
   transform (entry, output) {
+    if (this.options.type == 'wx') {
+      return this.transformWx(entry, output)
+    } else if(this.options.type == 'alipay') {
+      return this.transformAlipay(entry, output)
+    }
+  }
+
+  transformWx (entry, output) {
     const list = this._getDirList(path.resolve(entry))
     list.forEach(dir => {
       const components = readWxComponents(dir)
@@ -45,6 +54,29 @@ module.exports = class {
       });
     });
   }
+
+  transformAlipay (entry, output) {
+    const list = this._getDirList(path.resolve(entry))
+    list.forEach(dir => {
+      const components = readMyComponents(dir)
+      components.forEach(({ axml, myjs, acss, name }) => {
+        const outputTemplate = transformAli.axml(axml || '');
+        const outputJs = transformAli.myjs(myjs || '');
+        const outputCss = transformAli.acss(acss || '');
+        // TODO: 额外加一层避免多层情况，后续再改动
+        const html = beautify.html(`<div>${outputTemplate}</div>`);
+        const js = beautify.js(outputJs);
+        const css = beautify.css(outputCss);
+        const code = this._combination(html, js, css);
+        const baseUrl = path.join(output, dir.replace(entry, ''))
+        mkdirSync(baseUrl);
+        const _path = path.join(baseUrl, name + '.vue');
+        this._toFile(_path, code);
+      });
+    });
+  }
+  
+
 
   /**
    * 写入文件

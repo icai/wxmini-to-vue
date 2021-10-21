@@ -63,6 +63,41 @@ const readWxComponents = (dir) => {
 };
 exports.readWxComponents = readWxComponents;
 
+/**
+ * 读取支付宝组件
+ * @param {string} dir 入口目录
+ */
+const readMyComponents = (dir) => {
+  const stat = fs.statSync(dir)
+  if (!stat.isDirectory()) throw new Error("该路径错误或不存在")
+
+  const fileList = fs.readdirSync(dir);
+
+  const componentNameList = fileList
+    .filter(item => /\.axml$/.test(item))
+    .map(item => item.replace('.axml', ''));
+
+  return componentNameList.map(name => {
+    // 检测 axml
+    // 检测 axss
+    // 检测 js
+    const [axml, acss, myjs] = ['axml', 'acss', 'js'].map(type => {
+      const filePath = path.join(dir, name + '.' + type);
+      const stat = fs.statSync(filePath)
+      if (!stat.isFile()) return null;
+      const code = fs.readFileSync(filePath).toString('utf-8')
+      return code
+    });
+    return {
+      axml,
+      acss,
+      myjs,
+      name
+    };
+  }).filter(({ axml }) => axml);
+};
+exports.readMyComponents = readMyComponents;
+
 function mkdirSync (dirname) {
   if (fs.existsSync(dirname)) {
     return true;

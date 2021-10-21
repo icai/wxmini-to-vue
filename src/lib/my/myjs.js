@@ -11,7 +11,7 @@ const parser = require("@babel/parser");
 const generator = require("@babel/generator").default;
 const traverse = require('@babel/traverse').default
 const bTypes = require('@babel/types')
-const defaultConfig = require('../config/default');
+const defaultConfig = require('../../config/default');
 
 /**
  * 小程序js转换
@@ -19,7 +19,7 @@ const defaultConfig = require('../config/default');
  * @param {*} options
  */
 module.exports = (code, options = defaultConfig) => {
-  options.wxApiMap = options.wxApiMap || options.wxApiMap;
+  options.myApiMap = options.myApiMap || options.myApiMap;
 
   const ast = parser.parse(code, {})
   traverse(ast, {
@@ -131,7 +131,7 @@ module.exports = (code, options = defaultConfig) => {
         const _arguments = node.arguments || [];
         // '$toast'
         // 一个一个来 先处理这样简单的处理
-        if (Object.keys(options.wxApiMap).includes(property.name)) {
+        if (Object.keys(options.myApiMap).includes(property.name)) {
           // BUG: 转换成 this.$toast 作用域可能会出一点问题 目前可能得转换后手工去操作
           // 目前直接替换
           const _args = (_arguments).map(item => {
@@ -179,7 +179,7 @@ module.exports = (code, options = defaultConfig) => {
             return item;
           });
           // 这里应该可能存在多层的问题 如 this.$toast.clear()
-          const node_new = bTypes.callExpression(bTypes.memberExpression(bTypes.thisExpression(), bTypes.Identifier(options.wxApiMap[property.name] || property.name)), _args)
+          const node_new = bTypes.callExpression(bTypes.memberExpression(bTypes.thisExpression(), bTypes.Identifier(options.myApiMap[property.name] || property.name)), _args)
           path.replaceWith(node_new)
         }
       }

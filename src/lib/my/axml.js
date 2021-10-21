@@ -10,7 +10,7 @@
 const htmlparser2 = require("htmlparser2");
 const domSerializer = require('dom-serializer').default;
 const FAKE_ROOT = Symbol.for('fake-root');
-const defaultConfig = require('../config/default');
+const defaultConfig = require('../../config/default');
 
 
 /**

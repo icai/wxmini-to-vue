@@ -8,7 +8,7 @@
  */
 
 const cssTree = require('css-tree')
-const defaultConfig = require('../config/default');
+const defaultConfig = require('../../config/default');
 
 module.exports = (code, options = defaultConfig) => {
   options.elementMap = options.elementMap || defaultConfig.elementMap;
