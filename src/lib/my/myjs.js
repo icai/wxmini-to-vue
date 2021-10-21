@@ -2,8 +2,8 @@
 /*
  * @Author: bucai
  * @Date: 2021-02-04 10:40:24
- * @LastEditors: bucai
- * @LastEditTime: 2021-02-04 16:09:25
+ * @LastEditors: Terry Cai
+ * @LastEditTime: 2021-10-21 18:33:28
  * @Description:
  */
 
@@ -33,6 +33,7 @@ module.exports = (code, options = defaultConfig) => {
         path.replaceWith(node);
       }
     },
+    // @todo props 属性需要转换
     ObjectProperty (path) {
       // BUG: 代码 已经存在 export default 的问题
       const node = path.node;
@@ -228,6 +229,9 @@ module.exports = (code, options = defaultConfig) => {
           path.replaceWith(_object)
         }
       }
+      // @todo
+      // this.props.xxx 需要替换
+
     }
   });
 
