@@ -1,8 +1,8 @@
 /*
  * @Author: bucai
  * @Date: 2021-02-04 10:40:19
- * @LastEditors: bucai
- * @LastEditTime: 2021-02-04 14:57:29
+ * @LastEditors: Terry Cai
+ * @LastEditTime: 2021-10-22 14:50:38
  * @Description:
  */
 
@@ -74,6 +74,7 @@ module.exports = (code, options = defaultConfig) => {
         .replace(/^v-/g, ':')
         .replace(/^:if/g, 'v-if')
         .replace(/^:elif/g, 'v-else-if')
+        .replace(/^:else/g, 'v-else')
         .replace(/^:for/g, 'v-for')
         // .replace(/^(bind):?/g, '@')
         // .replace(/^catch:?(.*?)$/g, '@$1.capture')

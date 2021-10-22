@@ -3,7 +3,7 @@
  * @Author: bucai
  * @Date: 2021-02-04 10:40:24
  * @LastEditors: Terry Cai
- * @LastEditTime: 2021-10-21 18:33:28
+ * @LastEditTime: 2021-10-22 15:03:45
  * @Description:
  */
 
@@ -19,9 +19,14 @@ const defaultConfig = require('../../config/default');
  * @param {*} options
  */
 module.exports = (code, options = defaultConfig) => {
+  // @todo 需要替换
+  // props 
+  // methods 
+  // 生命周期函数
   options.myApiMap = options.myApiMap || options.myApiMap;
-
-  const ast = parser.parse(code, {})
+  // 支付宝支持 ES6 module import export
+  // 'import' and 'export' may appear only with 'sourceType: “module”'
+  const ast = parser.parse(code, { sourceType: 'module' })
   traverse(ast, {
     Identifier (path) {
       const node = path.node;
@@ -73,7 +78,7 @@ module.exports = (code, options = defaultConfig) => {
       // 一级数据
       const rootProperty = properties
         .filter((n) => {
-          return ["data", "onLoad"].includes(n.key.name);
+          return ["data", "props", "onLoad"].includes(n.key.name);
         })
         .map((node) => {
           // 标记一下
@@ -81,7 +86,7 @@ module.exports = (code, options = defaultConfig) => {
           return node;
         });
       const otherProperty = properties.filter((n) => {
-        return !["data", "onLoad"].includes(n.key.name);
+        return !["data", "props", "onLoad"].includes(n.key.name);
       });
       // 提出来
       const node_new = bTypes.exportDefaultDeclaration(

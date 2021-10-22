@@ -20,6 +20,7 @@
     "transform"
   ],
   "scripts": {
+    "dev": "node test.js",
     "commit": "git-cz",
     "test": "jest --coverage",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
@@ -37,8 +38,10 @@
     }
   },
   "dependencies": {
+    "@babel/core": "^7.15.8",
     "@babel/generator": "^7.12.13",
     "@babel/parser": "^7.12.14",
+    "@babel/preset-env": "^7.15.8",
     "@babel/traverse": "^7.12.13",
     "@babel/types": "^7.12.13",
     "chalk": "^4.1.0",
