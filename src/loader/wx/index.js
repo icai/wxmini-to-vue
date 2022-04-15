@@ -31,8 +31,11 @@ module.exports = function (dir, options) {
     const outputJs = transform.wxjs(wxjs || '', options);
     const outputCss = transform.wxss(wxss || '', options);
     // TODO: 额外加一层避免多层情况，后续再改动
+    // @ts-ignore
     const html = beautify.html(`<div>${outputTemplate}</div>`);
+    // @ts-ignore
     const js = beautify.js(outputJs);
+    // @ts-ignore
     const css = beautify.css(outputCss);
     const code = combination(html, js, css);
     return {
