@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-02-04 18:21:23
  * @Description:
  */
-const wxml = require('../../src/lib/wxml')
+const wxml = require('../../src/loader/wxml')
 
 describe('lib/wxml', () => {
 

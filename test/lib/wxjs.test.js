@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-02-04 18:19:52
  * @Description:
  */
-const wxjs = require('../../src/lib/wxjs')
+const wxjs = require('../../src/loader/wxjs')
 
 describe('lib/wxjs', () => {
 

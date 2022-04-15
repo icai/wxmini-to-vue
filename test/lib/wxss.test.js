@@ -5,7 +5,7 @@
  * @LastEditTime: 2021-02-04 18:25:06
  * @Description:
  */
-const wxss = require('../../src/lib/wxss')
+const wxss = require('../../src/loader/wxss')
 
 describe('lib/wxss', () => {
 

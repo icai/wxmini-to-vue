@@ -10,8 +10,8 @@ const path = require('path')
 const beautify = require('js-beautify')
 const { readWxComponents, readMyComponents, traverseDir, mkdirSync } = require("./utils/index");
 const defaultConfig = require('./config/default');
-const transform = require('./lib/wx')
-const transformAli = require('./lib/my')
+const transform = require('./loader/wx')
+const transformAli = require('./loader/my')
 module.exports = class {
   /**
    *
