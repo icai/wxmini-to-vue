@@ -9,7 +9,8 @@ const fs = require('fs')
 const path = require('path')
 const { traverseDir, mkdirSync } = require("./utils/index");
 const defaultConfig = require('./config/default');
-const transform = require('./loader/wx')
+const wxTransform = require('./loader/wx')
+const myTransform = require('./loader/my')
 module.exports = class {
   /**
    * @param {string|object} type 转换的类型 小程序为 wx 目前只有wx
@@ -23,7 +24,8 @@ module.exports = class {
     this.type = type;
     this.options = Object.assign({}, defaultConfig, options);
     this.loader = {
-      wx: transform
+      wx: wxTransform,
+      my: myTransform
     }[type];
   }
 
