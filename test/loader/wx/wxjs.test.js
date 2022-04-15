@@ -1,13 +1,13 @@
 /*
  * @Author: bucai
  * @Date: 2021-02-04 17:24:15
- * @LastEditors: bucai
- * @LastEditTime: 2021-02-04 18:19:52
+ * @LastEditors: bucai<1450941858@qq.com>
+ * @LastEditTime: 2021-11-03 17:33:06
  * @Description:
  */
-const wxjs = require('../../src/loader/wxjs')
+const wxjs = require('../../../src/loader/wx/wxjs')
 
-describe('lib/wxjs', () => {
+describe('loader/wx/wxjs', () => {
 
   test('检测转换', () => {
     const outputCode1 = wxjs('Page({})')

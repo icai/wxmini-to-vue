@@ -1,13 +1,13 @@
 /*
  * @Author: bucai
  * @Date: 2021-02-04 17:24:29
- * @LastEditors: bucai
- * @LastEditTime: 2021-02-04 18:25:06
+ * @LastEditors: bucai<1450941858@qq.com>
+ * @LastEditTime: 2021-11-03 15:17:48
  * @Description:
  */
-const wxss = require('../../src/loader/wxss')
+const wxss = require('../../../src/loader/wx/wxss')
 
-describe('lib/wxss', () => {
+describe('loader/wx/wxss', () => {
 
   test('检测转换', () => {
 

@@ -55,7 +55,7 @@
 
   <view class="footer">
     <view class="footer_box">
-      <text>云澎科技 提供技术支持</text>
+      <text>xxxx 提供技术支持</text>
       <text class="yp_a" bindtap="handleCallSc" wx:if="{{support_phone}}">联系客服</text>
     </view>
   </view>
