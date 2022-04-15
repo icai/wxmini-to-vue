@@ -13,7 +13,7 @@ const wxTransform = require('./loader/wx')
 const myTransform = require('./loader/my')
 module.exports = class {
   /**
-   * @param {string|object} type 转换的类型 小程序为 wx 目前只有wx
+   * @param {string|object} type 转换的类型 小程序为 wx || my
    * @param {object} options 配置
    */
   constructor(type = 'wx', options = defaultConfig) {
